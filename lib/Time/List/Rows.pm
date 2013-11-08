@@ -7,7 +7,7 @@ use Class::Accessor::Lite;
 use Time::List::Rows::Row;
 use Time::List::Constant;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -88,9 +88,9 @@ sub set_rows_from_input_strftime{
     my ($self , $rows)  = @_;
     my $strf_form = $self->input_strftime_form;
     my $keys = {};
-    for my $time(keys $rows){
+    for my $time(keys %$rows){
         my $values = $rows->{$time};
-        for(keys $values){
+        for(keys %$values){
             $keys->{$_} = 1;
         }
         my $unixtime = Time::Piece->strptime($time , $strf_form)->strftime('%s');
@@ -106,9 +106,9 @@ sub set_rows_from_input_strftime{
 sub set_rows_from_datetime{
     my ($self , $rows)  = @_;
     my $keys = {};
-    for my $datetime(keys $rows){
+    for my $datetime(keys %$rows){
         my $values = $rows->{$datetime};
-        for(keys $values){
+        for(keys %$values){
             $keys->{$_} = 1;
         }
         my $row = $self->datetime_rows_hash()->{$datetime};
@@ -123,9 +123,9 @@ sub set_rows_from_datetime{
 sub set_rows_from_unixtime{
     my ($self , $rows)  = @_;
     my $keys = {};
-    for my $unixtime(keys $rows){
+    for my $unixtime(keys %$rows){
         my $values = $rows->{$unixtime};
-        for(keys $values){
+        for(keys %$values){
             $keys->{$_} = 1;
         }
         my $row = $self->unixtime_rows_hash()->{$unixtime};
@@ -144,7 +144,7 @@ sub get_array{
         my $summary = {};
         my $rows = [map{
             my $row = $unixtime_rows_hash->{$_->unixtime}->get_values;
-            for my $key(keys $row){
+            for my $key(keys %$row){
                 my $value = $row->{$key};
                 if($value && $value =~ /^\d+$/){
                     $summary->{$key} += $value;
@@ -178,7 +178,7 @@ Time::List::Rows - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List::Rows version 0.02.
+This document describes Time::List::Rows version 0.03.
 
 =head1 SYNOPSIS
 

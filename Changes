@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.03 2013-11-08T13:10:01Z
+    - remove use 5.16.2 and add require module : Class::Accessor::Lite 
+
 0.02 2013-11-06T06:59:37Z
     - forgot require moduke : Data::Util
 

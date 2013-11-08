@@ -1,6 +1,5 @@
 package Time::List::Constant;
 
-use 5.16.2;
 use strict;
 use warnings;
 

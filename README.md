@@ -4,7 +4,7 @@ Time::List - Perl extention to output time list
 
 # VERSION
 
-This document describes Time::List version 0.02.
+This document describes Time::List version 0.03.
 
 # SYNOPSIS
 
