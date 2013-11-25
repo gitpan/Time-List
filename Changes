@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.04 2013-11-25T08:08:14Z
+    - add decode_utf8 to value from $TimePiece->strftime
+
 0.03 2013-11-08T13:10:01Z
     - remove use 5.16.2 and add require module : Class::Accessor::Lite 
 

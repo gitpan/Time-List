@@ -5,8 +5,9 @@ use warnings;
 use Time::Piece;
 use Class::Accessor::Lite;
 use Time::List::Constant;
+use Encode qw/decode_utf8/;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -39,6 +40,7 @@ sub new {
     }else{
         $args{datetime} = localtime($args{unixtime})->strftime( '%Y-%m-%d %H:%M:%S');
     }
+    decode_utf8($args{datetime});
     my $self = bless {
         %DEFAULTS,
         values => {},
@@ -59,9 +61,9 @@ sub get_hash_seed{
     my $values = $self->values;
     if($self->show_end_time){
         join($self->end_time_separate_chars, 
-        map{localtime($_)->strftime($self->output_strftime_form)}split("\t",$self->unixtime)) => $values;
+        map{decode_utf8(localtime($_)->strftime($self->output_strftime_form))}split("\t",$self->unixtime)) => $values;
     }else{
-        localtime($self->unixtime)->strftime($self->output_strftime_form) => $values;
+        decode_utf8(localtime($self->unixtime)->strftime($self->output_strftime_form)) => $values;
     }
 }
 
@@ -71,9 +73,9 @@ sub get_key{
 
     if($self->show_end_time){
         join($self->end_time_separate_chars, 
-        map{localtime($_)->strftime($self->output_strftime_form)}split("\t",$self->unixtime));
+        map{decode_utf8(localtime($_)->strftime($self->output_strftime_form))}split("\t",$self->unixtime));
     }else{
-        localtime($self->unixtime)->strftime($self->output_strftime_form);
+        decode_utf8(localtime($self->unixtime)->strftime($self->output_strftime_form));
     }
 }
 
@@ -98,7 +100,7 @@ Time::List - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List version 0.03.
+This document describes Time::List version 0.04.
 
 =head1 SYNOPSIS
 
