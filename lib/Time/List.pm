@@ -7,7 +7,7 @@ use Time::List::Rows;
 use Class::Accessor::Lite;
 use Time::List::Constant;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -58,12 +58,8 @@ sub get_list{
         
         my ($end_year , $end_month) = ($end_tp->strftime('%Y') , $end_tp->strftime('%m'));
 
-        if($start_year < $end_year){
-            ($start_year , $start_month , $end_year , $end_month) = ($end_year , $end_month , $start_year , $start_month);
-        }
         if($self->boundary_included){
-            while($start_year < $end_year || $start_month <= $end_month){
-
+            while($start_year < $end_year || ($start_year == $end_year && $start_month <= $end_month)){
                 if($show_end_time){
                     my ( $next_year  , $next_month) = ($start_year , $start_month);
                     if(++$next_month > 12){
@@ -194,7 +190,7 @@ Time::List - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List version 0.04.
+This document describes Time::List version 0.05.
 
 =head1 SYNOPSIS
 

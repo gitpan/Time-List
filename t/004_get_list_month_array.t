@@ -96,6 +96,24 @@ subtest 'get_list_array_with_endtime'=> sub {
         "2013-06-01 :: 2013-06-30",
     ] , $array;
 
+    $start_time = "2013-11-01";
+    $end_time = "2013-12-01";
+    $array = $timelist->get_list($start_time , $end_time);
+    is_deeply [
+        "2013-11-01 :: 2013-11-30",
+        "2013-12-01 :: 2013-12-31",
+    ] , $array;
+
+    $start_time = "2013-11-01";
+    $end_time = "2014-01-01";
+    $array = $timelist->get_list($start_time , $end_time);
+    is_deeply [
+        "2013-11-01 :: 2013-11-30",
+        "2013-12-01 :: 2013-12-31",
+        "2014-01-01 :: 2014-01-31",
+    ] , $array;
+
+
 };
 
 done_testing;
