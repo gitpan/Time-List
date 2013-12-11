@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.06 2013-12-11T07:48:26Z
+    - fix can not pass test if Timezone is not JST or UTC 
+
 0.05 2013-12-02T23:59:11Z
     - fix get monthly list bug if enter a new years
 

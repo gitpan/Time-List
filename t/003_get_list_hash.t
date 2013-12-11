@@ -5,6 +5,8 @@ use Test::More;
 use Time::List;
 use Time::List::Constant;
 
+$ENV{TZ} = "JST";
+
 subtest 'get_list_array'=> sub {
     my $timelist = Time::List->new(
         input_strftime => '%Y-%m-%d %H:%M:%S',
