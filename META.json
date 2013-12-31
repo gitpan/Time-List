@@ -50,25 +50,26 @@
          "requires" : {
             "Class::Accessor::Lite" : "0",
             "Data::Util" : "0",
-            "Test::More" : "0.98"
+            "Test::More" : "0.98",
+            "Time::Piece" : "1.24"
          }
       }
    },
    "provides" : {
       "Time::List" : {
          "file" : "lib/Time/List.pm",
-         "version" : "0.06"
+         "version" : "0.07"
       },
       "Time::List::Constant" : {
          "file" : "lib/Time/List/Constant.pm"
       },
       "Time::List::Rows" : {
          "file" : "lib/Time/List/Rows.pm",
-         "version" : "0.06"
+         "version" : "0.07"
       },
       "Time::List::Rows::Row" : {
          "file" : "lib/Time/List/Rows/Row.pm",
-         "version" : "0.06"
+         "version" : "0.07"
       }
    },
    "release_status" : "stable",
@@ -82,7 +83,7 @@
          "web" : "https://github.com/S2/p5-Time-List"
       }
    },
-   "version" : "0.06",
+   "version" : "0.07",
    "x_contributors" : [
       "sato sin <shinichiro@wano.co.jp>"
    ]

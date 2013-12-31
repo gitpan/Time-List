@@ -1,5 +1,10 @@
 Revision history for Perl extension Time-List
 
+0.07 2013-12-31T17:17:55Z
+    - repair SYNOPSIS . thank you reneeb !
+    - The code which excepts Windows and BSD was added.
+    - add time::piece into cpanfile for perl 5.8 , 5.10 and other
+
 0.06 2013-12-11T07:48:26Z
     - fix can not pass test if Timezone is not JST or UTC 
 

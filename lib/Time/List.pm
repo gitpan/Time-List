@@ -7,7 +7,7 @@ use Time::List::Rows;
 use Class::Accessor::Lite;
 use Time::List::Constant;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -190,14 +190,14 @@ Time::List - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List version 0.06.
+This document describes Time::List version 0.07.
 
 =head1 SYNOPSIS
 
     use Time::List;
     $timelist = Time::List->new(
-        input_strftime => '%Y-%m-%d %H:%M:%S',
-        output_strftime => '%Y-%m-%d %H:%M:%S',
+        input_strftime_form => '%Y-%m-%d %H:%M:%S',
+        output_strftime_form => '%Y-%m-%d %H:%M:%S',
         time_unit => DAY ,
         output_type => ARRAY ,
     );

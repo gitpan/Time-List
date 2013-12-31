@@ -4,14 +4,14 @@ Time::List - Perl extention to output time list
 
 # VERSION
 
-This document describes Time::List version 0.06.
+This document describes Time::List version 0.07.
 
 # SYNOPSIS
 
     use Time::List;
     $timelist = Time::List->new(
-        input_strftime => '%Y-%m-%d %H:%M:%S',
-        output_strftime => '%Y-%m-%d %H:%M:%S',
+        input_strftime_form => '%Y-%m-%d %H:%M:%S',
+        output_strftime_form => '%Y-%m-%d %H:%M:%S',
         time_unit => DAY ,
         output_type => ARRAY ,
     );
