@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.08 2014-01-06T10:32:03Z
+    - ADD: "use Time::List::Constant;" to some SYNOPSIS  (thanks reneeb)
+
 0.07 2013-12-31T17:17:55Z
     - repair SYNOPSIS . thank you reneeb !
     - The code which excepts Windows and BSD was added.
