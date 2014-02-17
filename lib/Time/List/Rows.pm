@@ -7,7 +7,7 @@ use Class::Accessor::Lite;
 use Time::List::Rows::Row;
 use Time::List::Constant;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -178,7 +178,7 @@ Time::List::Rows - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List::Rows version 0.08.
+This document describes Time::List::Rows version 0.09.
 
 =head1 SYNOPSIS
 

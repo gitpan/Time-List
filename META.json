@@ -4,7 +4,7 @@
       "<<Shinichiro Sato>> <<<s2otsa59@gmail.com>>>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.8.0",
+   "generated_by" : "Minilla/v0.11.0",
    "license" : [
       "perl_5"
    ],
@@ -58,18 +58,18 @@
    "provides" : {
       "Time::List" : {
          "file" : "lib/Time/List.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       },
       "Time::List::Constant" : {
          "file" : "lib/Time/List/Constant.pm"
       },
       "Time::List::Rows" : {
          "file" : "lib/Time/List/Rows.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       },
       "Time::List::Rows::Row" : {
          "file" : "lib/Time/List/Rows/Row.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       }
    },
    "release_status" : "stable",
@@ -83,7 +83,7 @@
          "web" : "https://github.com/S2/p5-Time-List"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_contributors" : [
       "sato sin <shinichiro@wano.co.jp>"
    ]

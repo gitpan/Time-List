@@ -7,7 +7,7 @@ use Class::Accessor::Lite;
 use Time::List::Constant;
 use Encode qw/decode_utf8/;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -100,7 +100,7 @@ Time::List - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List version 0.08.
+This document describes Time::List version 0.09.
 
 =head1 SYNOPSIS
 

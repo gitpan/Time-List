@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.09 2014-02-17T04:04:16Z
+    - move skip statement to top on t/000,t/001
+
 0.08 2014-01-06T10:32:03Z
     - ADD: "use Time::List::Constant;" to some SYNOPSIS  (thanks reneeb)
 
