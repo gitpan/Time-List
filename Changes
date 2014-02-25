@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.10 2014-02-25T10:16:31Z
+    - remove bsd test skip code
+
 0.09 2014-02-17T04:04:16Z
     - move skip statement to top on t/000,t/001
 
