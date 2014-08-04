@@ -31,21 +31,21 @@ no_index:
 provides:
   Time::List:
     file: lib/Time/List.pm
-    version: 0.10
+    version: 0.11
   Time::List::Constant:
     file: lib/Time/List/Constant.pm
   Time::List::Rows:
     file: lib/Time/List/Rows.pm
-    version: 0.10
+    version: 0.11
   Time::List::Rows::Row:
     file: lib/Time/List/Rows/Row.pm
-    version: 0.10
+    version: 0.11
 requires:
   perl: 5.008001
 resources:
   bugtracker: https://github.com/S2/p5-Time-List/issues
   homepage: https://github.com/S2/p5-Time-List
   repository: https://github.com/S2/p5-Time-List.git
-version: 0.10
+version: 0.11
 x_contributors:
   - 'sato sin <shinichiro@wano.co.jp>'
