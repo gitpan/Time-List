@@ -7,7 +7,7 @@ use Time::List::Rows;
 use Class::Accessor::Lite;
 use Time::List::Constant;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -25,7 +25,9 @@ my %DEFAULTS = (
     boundary_included => 1 ,
     end_time_separate_chars   => '~' ,
     create_summary => 0 , 
-    summary_key_name => "summary"
+    summary_key_name => "summary" , 
+    filter => undef , 
+    filter_keys => [] , 
 );
 
 Class::Accessor::Lite->mk_accessors(keys %DEFAULTS);
@@ -172,7 +174,7 @@ sub get_list{
         }
     }elsif($output_type == ROWS){
         my %args = %$self;
-        Time::List::Rows->new(%args , time_array => $time_array);
+        return Time::List::Rows->new(%args , time_array => $time_array);
     }else{
         die 'set output type';
     }
@@ -190,7 +192,7 @@ Time::List - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List version 0.11.
+This document describes Time::List version 0.12.
 
 =head1 SYNOPSIS
 

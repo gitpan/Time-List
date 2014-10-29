@@ -7,7 +7,7 @@ use Class::Accessor::Lite;
 use Time::List::Rows::Row;
 use Time::List::Constant;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 my $unit_time = {
     DAY()   => 3600 * 24 , 
@@ -28,7 +28,9 @@ my %DEFAULTS = (
     unixtime_rows_hash => {},
     datetime_rows_hash => {},
     create_summary => 0 , 
-    summary_key_name => "summary"
+    summary_key_name => "summary" , 
+    filter => undef , 
+    filter_keys => [] , 
 );
 
 Class::Accessor::Lite->mk_accessors(keys %DEFAULTS);
@@ -142,22 +144,55 @@ sub get_array{
     my $unixtime_rows_hash = $self->unixtime_rows_hash;
     if($self->create_summary){
         my $summary = {};
+
         my $rows = [map{
             my $row = $unixtime_rows_hash->{$_->unixtime}->get_values;
+            if($self->filter){
+                $row = {%$row};
+                my @filter_keys = @{$self->filter_keys};
+                if(ref $filter_keys[0] eq "SCALAR" && ${$filter_keys[0]} eq "*"){
+                    @filter_keys = keys $row 
+                }
+                for my $key (@filter_keys){
+                    if(exists $row->{$key}){
+                        $row->{$key} = $self->filter->($row->{$key});
+                    }
+                }
+            }
+
             for my $key(keys %$row){
                 my $value = $row->{$key};
                 if($value && $value =~ /(^|^-)(\d+|\d+\.\d+)$/){
                     $summary->{$key} += $value;
                 }
             }
+
             $row;
         }@{$self->time_rows}];
         $summary->{output_time} = $self->summary_key_name;
         push @$rows , $summary ;
         unshift @$rows , $summary;
+
         return $rows;
     }else{
-        return [map{$unixtime_rows_hash->{$_->unixtime}->get_values}@{$self->time_rows}]
+        return [map{
+                my $row = $unixtime_rows_hash->{$_->unixtime}->get_values;
+
+                if($self->filter){
+                    $row = {%$row};
+                    my @filter_keys = @{$self->filter_keys};
+                    if(ref $filter_keys[0] eq "SCALAR" && ${$filter_keys[0]} eq "*"){
+                        @filter_keys = keys $row 
+                    }
+                    for my $key (@filter_keys){
+                        if(exists $row->{$key}){
+                            $row->{$key} = $self->filter->($row->{$key});
+                        }
+                    }
+                }
+
+                $row;
+            }@{$self->time_rows}]
     }
 }
 
@@ -178,7 +213,7 @@ Time::List::Rows - Perl extention to output time list
 
 =head1 VERSION
 
-This document describes Time::List::Rows version 0.11.
+This document describes Time::List::Rows version 0.12.
 
 =head1 SYNOPSIS
 

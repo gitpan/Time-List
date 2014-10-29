@@ -1,5 +1,8 @@
 Revision history for Perl extension Time-List
 
+0.12 2014-10-29T08:45:12Z
+    - add array ref filter
+
 0.11 2014-08-04T04:09:59Z
     - fix bug
     - if summary target has decimal , minus value then summary do not calculate correctly.

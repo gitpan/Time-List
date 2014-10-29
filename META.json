@@ -4,7 +4,7 @@
       "<<Shinichiro Sato>> <<<s2otsa59@gmail.com>>>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.11.0",
+   "generated_by" : "Minilla/v2.1.1",
    "license" : [
       "perl_5"
    ],
@@ -28,15 +28,14 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "CPAN::Meta::Prereqs" : "0",
             "Module::Build" : "0.38"
          }
       },
       "develop" : {
          "requires" : {
             "Test::CPAN::Meta" : "0",
-            "Test::MinimumVersion" : "0.10108",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
             "Test::Pod" : "1.41",
             "Test::Spellunker" : "v0.2.7"
          }
@@ -58,18 +57,18 @@
    "provides" : {
       "Time::List" : {
          "file" : "lib/Time/List.pm",
-         "version" : "0.11"
+         "version" : "0.12"
       },
       "Time::List::Constant" : {
          "file" : "lib/Time/List/Constant.pm"
       },
       "Time::List::Rows" : {
          "file" : "lib/Time/List/Rows.pm",
-         "version" : "0.11"
+         "version" : "0.12"
       },
       "Time::List::Rows::Row" : {
          "file" : "lib/Time/List/Rows/Row.pm",
-         "version" : "0.11"
+         "version" : "0.12"
       }
    },
    "release_status" : "stable",
@@ -83,7 +82,7 @@
          "web" : "https://github.com/S2/p5-Time-List"
       }
    },
-   "version" : "0.11",
+   "version" : "0.12",
    "x_contributors" : [
       "sato sin <shinichiro@wano.co.jp>"
    ]

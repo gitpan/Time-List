@@ -15,6 +15,8 @@ subtest 'get_list_array'=> sub {
         output_strftime_form => '%Y-%m-%d',
         time_unit => MONTH,
         output_type => ROWS ,
+        filter => sub {} , 
+        filter_keys => [] , 
     );
 
     my ($start_time , $end_time);
@@ -255,6 +257,83 @@ subtest 'get_list_rows_per_hours'=> sub {
         {output_time => "2013-01-01 23:00:00" , datetime => "2013-01-01 23:00:00"},
         {id => 15 , name => -15 , output_time => "summary"},
     ] , $array;
+
+    $time_list_rows->filter(sub{
+            my $value = shift;
+            return $value * 2;
+        });
+    $time_list_rows->filter_keys([qw/name/]);
+
+    $array = $time_list_rows->get_array;
+    delete $_->{unixtime} for @$array;
+    is_deeply [
+        {id => 15 , name => 2 * -15 , output_time => "summary"},
+        {id => 1  , name => 2 * -4.5 , output_time => "2013-01-01 00:00:00" , datetime => "2013-01-01 00:00:00"},
+        {id => 1  , name => 2 * -4   , output_time => "2013-01-01 01:00:00" , datetime => "2013-01-01 01:00:00"},
+        {id => 1  , name => 2 * -3.5 , output_time => "2013-01-01 02:00:00" , datetime => "2013-01-01 02:00:00"},
+        {id => 1  , name => 2 * -3   , output_time => "2013-01-01 03:00:00" , datetime => "2013-01-01 03:00:00"},
+        {id => 1  , name => 2 * -2.5 , output_time => "2013-01-01 04:00:00" , datetime => "2013-01-01 04:00:00"},
+        {id => 1  , name => 2 * -2   , output_time => "2013-01-01 05:00:00" , datetime => "2013-01-01 05:00:00"},
+        {id => 1  , name => 2 * -1.5 , output_time => "2013-01-01 06:00:00" , datetime => "2013-01-01 06:00:00"},
+        {id => 1  , name => 2 * -1   , output_time => "2013-01-01 07:00:00" , datetime => "2013-01-01 07:00:00"},
+        {id => 1  , name => 2 * -0.5 , output_time => "2013-01-01 08:00:00" , datetime => "2013-01-01 08:00:00"},
+        {id => 1  , name => 2 * 0    , output_time => "2013-01-01 09:00:00" , datetime => "2013-01-01 09:00:00"},
+        {id => 1  , name => 2 * 0.5  , output_time => "2013-01-01 10:00:00" , datetime => "2013-01-01 10:00:00"},
+        {id => 1  , name => 2 * 1    , output_time => "2013-01-01 11:00:00" , datetime => "2013-01-01 11:00:00"},
+        {id => 1  , name => 2 * 1.5  , output_time => "2013-01-01 12:00:00" , datetime => "2013-01-01 12:00:00"},
+        {id => 1  , name => 2 * 2    , output_time => "2013-01-01 13:00:00" , datetime => "2013-01-01 13:00:00"},
+        {id => 1  , name => 2 * 2.5  , output_time => "2013-01-01 14:00:00" , datetime => "2013-01-01 14:00:00"},
+        {output_time => "2013-01-01 15:00:00" , datetime => "2013-01-01 15:00:00"},
+        {output_time => "2013-01-01 16:00:00" , datetime => "2013-01-01 16:00:00"},
+        {output_time => "2013-01-01 17:00:00" , datetime => "2013-01-01 17:00:00"},
+        {output_time => "2013-01-01 18:00:00" , datetime => "2013-01-01 18:00:00"},
+        {output_time => "2013-01-01 19:00:00" , datetime => "2013-01-01 19:00:00"},
+        {output_time => "2013-01-01 20:00:00" , datetime => "2013-01-01 20:00:00"},
+        {output_time => "2013-01-01 21:00:00" , datetime => "2013-01-01 21:00:00"},
+        {output_time => "2013-01-01 22:00:00" , datetime => "2013-01-01 22:00:00"},
+        {output_time => "2013-01-01 23:00:00" , datetime => "2013-01-01 23:00:00"},
+        {id => 15 , name => 2 * -15 , output_time => "summary"},
+    ] , $array;
+
+    $time_list_rows->filter(sub{
+            my $value = shift;
+            return $value unless $value =~ /^-?(?:\d+|\d\.\d+)$/;
+            return $value * 3;
+        });
+    $time_list_rows->filter_keys([\"*"]);
+
+    $array = $time_list_rows->get_array;
+    delete $_->{unixtime} for @$array;
+    is_deeply [
+        {id => 3 * 15 , name => 3 * -15 , output_time => "summary"},
+        {id => 3 * 1  , name => 3 * -4.5 , output_time => "2013-01-01 00:00:00" , datetime => "2013-01-01 00:00:00"},
+        {id => 3 * 1  , name => 3 * -4   , output_time => "2013-01-01 01:00:00" , datetime => "2013-01-01 01:00:00"},
+        {id => 3 * 1  , name => 3 * -3.5 , output_time => "2013-01-01 02:00:00" , datetime => "2013-01-01 02:00:00"},
+        {id => 3 * 1  , name => 3 * -3   , output_time => "2013-01-01 03:00:00" , datetime => "2013-01-01 03:00:00"},
+        {id => 3 * 1  , name => 3 * -2.5 , output_time => "2013-01-01 04:00:00" , datetime => "2013-01-01 04:00:00"},
+        {id => 3 * 1  , name => 3 * -2   , output_time => "2013-01-01 05:00:00" , datetime => "2013-01-01 05:00:00"},
+        {id => 3 * 1  , name => 3 * -1.5 , output_time => "2013-01-01 06:00:00" , datetime => "2013-01-01 06:00:00"},
+        {id => 3 * 1  , name => 3 * -1   , output_time => "2013-01-01 07:00:00" , datetime => "2013-01-01 07:00:00"},
+        {id => 3 * 1  , name => 3 * -0.5 , output_time => "2013-01-01 08:00:00" , datetime => "2013-01-01 08:00:00"},
+        {id => 3 * 1  , name => 3 * 0    , output_time => "2013-01-01 09:00:00" , datetime => "2013-01-01 09:00:00"},
+        {id => 3 * 1  , name => 3 * 0.5  , output_time => "2013-01-01 10:00:00" , datetime => "2013-01-01 10:00:00"},
+        {id => 3 * 1  , name => 3 * 1    , output_time => "2013-01-01 11:00:00" , datetime => "2013-01-01 11:00:00"},
+        {id => 3 * 1  , name => 3 * 1.5  , output_time => "2013-01-01 12:00:00" , datetime => "2013-01-01 12:00:00"},
+        {id => 3 * 1  , name => 3 * 2    , output_time => "2013-01-01 13:00:00" , datetime => "2013-01-01 13:00:00"},
+        {id => 3 * 1  , name => 3 * 2.5  , output_time => "2013-01-01 14:00:00" , datetime => "2013-01-01 14:00:00"},
+        {output_time => "2013-01-01 15:00:00" , datetime => "2013-01-01 15:00:00"},
+        {output_time => "2013-01-01 16:00:00" , datetime => "2013-01-01 16:00:00"},
+        {output_time => "2013-01-01 17:00:00" , datetime => "2013-01-01 17:00:00"},
+        {output_time => "2013-01-01 18:00:00" , datetime => "2013-01-01 18:00:00"},
+        {output_time => "2013-01-01 19:00:00" , datetime => "2013-01-01 19:00:00"},
+        {output_time => "2013-01-01 20:00:00" , datetime => "2013-01-01 20:00:00"},
+        {output_time => "2013-01-01 21:00:00" , datetime => "2013-01-01 21:00:00"},
+        {output_time => "2013-01-01 22:00:00" , datetime => "2013-01-01 22:00:00"},
+        {output_time => "2013-01-01 23:00:00" , datetime => "2013-01-01 23:00:00"},
+        {id => 3 * 15 , name => 3 * -15 , output_time => "summary"},
+    ] , $array;
+
+
 
 
     done_testing;
